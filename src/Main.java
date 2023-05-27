@@ -87,8 +87,18 @@ public class Node {
     }
 
     public int maxHeight() {
-        return -1; // TODO!!! Your code here!
+        int maxChildHeight = 0;
+        if (firstChild != null) {
+            maxChildHeight = firstChild.maxHeight() + 1;
+            Node sibling = firstChild.nextSibling;
+            while (sibling != null) {
+                maxChildHeight = Math.max(maxChildHeight, sibling.maxHeight() + 1);
+                sibling = sibling.nextSibling;
+            }
+        }
+        return maxChildHeight;
     }
+
 
     public static void main (String[] param) {
         Node v = Node.parseTree ("A(B,C(D,F(K,L,M,N(O)),P))");
@@ -96,5 +106,9 @@ public class Node {
         int n = v.maxHeight();
         System.out.println ("Maximum number of levels: " + n); // 4
         // TODO!!! Your tests here!
+        Node singleNode = new Node("Z", null, null);
+        System.out.println(singleNode);
+        int singleNodeHeight = singleNode.maxHeight();
+        System.out.println("Height of a single node: " + singleNodeHeight); // 0
     }
 }
