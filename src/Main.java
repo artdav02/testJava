@@ -8,7 +8,7 @@ public class Main {
             private Node nextSibling;
 
             Node(String n, Node d, Node r) {
-                name = n;
+                name = n; // here
                 firstChild = d;
                 nextSibling = r;
             }
